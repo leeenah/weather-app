@@ -1,0 +1,81 @@
+h1 {
+  padding-top: 20px;
+}
+
+h1,
+h2,
+h3,
+p {
+  text-align: center;
+}
+
+h3 {
+  padding-top: 5px;
+}
+p {
+  margin-bottom: 0;
+}
+span {
+  font-weight: lighter;
+  font-size: 12px;
+  text-align: center;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#search-form {
+  text-align: center;
+  margin-top: 20px;
+}
+.col-sm {
+  text-align: center;
+  font-size: 12px;
+}
+.fa-sun {
+  font-size: 30px;
+  padding: 5px 12px;
+}
+.fa-cloud-rain {
+  font-size: 30px;
+  padding: 5px 12px;
+}
+.fa-cloud-sun {
+  font-size: 30px;
+  padding: 5px 12px;
+}
+
+.col-md-auto {
+  padding: 0;
+  text-align: center;
+  background-color: crimson;
+}
+.col-md {
+  text-align: right;
+}
+
+.currentDay {
+  margin-bottom: 0;
+}
+
+#temperature-display {
+  text-align: center;
+}
+
+#current-temperature {
+  font-size: 56px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.weather-now {
+  font-size: 30px;
+  padding-left: 0;
+}
+
+#current-location {
+  border-width: 1px;
+  border-radius: 4px;
+}
