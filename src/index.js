@@ -38,7 +38,6 @@ function callApi() {
 //Display results of the searched city on the page
 
 function showTemperature(response) {
-  console.log(response);
   let temperature = Math.round(response.data.main.temp);
   let temperatureDisplay = document.querySelector("#current-temperature");
   temperatureDisplay.innerHTML = temperature;
@@ -58,15 +57,23 @@ function showMoreWeatherInfo(response3) {
     "#feels-like"
   ).innerHTML = feelsLike);
   let humidity = response3.data.main.humidity;
-  let humidiityDisplay = (document.querySelector(
-    "#humidity"
-  ).innerHTML = humidity);
+  let humidityDisplay = Math.round(
+    (document.querySelector("#humidity").innerHTML = humidity)
+  );
+}
+
+function showWeatherDescription(response4) {
+  let description = response4.data.weather[0].description;
+  let weatherDescription = (document.querySelector(
+    "#weather-description"
+  ).innerHTML = description);
 }
 
 function parseResponse(response) {
   showTemperature(response);
   showCity(response);
   showMoreWeatherInfo(response);
+  showWeatherDescription(response);
 }
 
 //Feature #2
