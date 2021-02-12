@@ -38,6 +38,7 @@ function callApi() {
 //Display results of the searched city on the page
 
 function showTemperature(response) {
+  console.log(response);
   let temperature = Math.round(response.data.main.temp);
   let temperatureDisplay = document.querySelector("#current-temperature");
   temperatureDisplay.innerHTML = temperature;
@@ -45,13 +46,27 @@ function showTemperature(response) {
 
 function showCity(response2) {
   let city = response2.data.name; //new york
-  let h1 = document.querySelector("#city"); //city = h1 element.
+  let h1 = document.querySelector("#city"); //#city = h1 element.
   h1.innerHTML = city;
+  //can also write the above as
+  //let h1 = document.querySelector("#city").innerHTML = response2.data.name;
+}
+
+function showMoreWeatherInfo(response3) {
+  let feelsLike = Math.round(response3.data.main.feels_like);
+  let feelsLikeDisplay = (document.querySelector(
+    "#feels-like"
+  ).innerHTML = feelsLike);
+  let humidity = response3.data.main.humidity;
+  let humidiityDisplay = (document.querySelector(
+    "#humidity"
+  ).innerHTML = humidity);
 }
 
 function parseResponse(response) {
   showTemperature(response);
   showCity(response);
+  showMoreWeatherInfo(response);
 }
 
 //Feature #2
