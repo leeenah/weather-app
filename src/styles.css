@@ -34,6 +34,11 @@ body {
   padding: 10px 10px 40px;
   width: 50%;
 }
+footer {
+  font-size: 9px;
+  position: relative;
+  bottom: -60px;
+}
 
 #search-form {
   text-align: center;
