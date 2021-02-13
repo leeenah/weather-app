@@ -84,3 +84,12 @@ body {
   border-width: 1px;
   border-radius: 4px;
 }
+
+#celcius-link {
+  position: relative;
+  top: -30px;
+}
+#farenheit-link {
+  position: relative;
+  top: -30px;
+}

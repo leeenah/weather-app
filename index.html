@@ -22,9 +22,9 @@
     <div class="container">
       <!--Have form inside the "container" to use bootstrap CCS-->
       <!-- update: actually. can just have form wrap around where you want form to behave. Up to you-->
+
       <form id="search-form">
         <div>
-          <button id="current-location">📍</button>
           <!-- needed an id in the input-->
           <input
             id="search-city"
@@ -34,6 +34,7 @@
             autocomplete="off"
           />
           <input type="submit" value="Go" />
+          <button id="current-location">📍</button>
         </div>
       </form>
 
@@ -43,11 +44,11 @@
 
       <div id="temperature-display">
         <span id="current-temperature"> </span>
-        <span>
-          <a href="#" id="celcius-link"> <strong>°C</strong></a></span
-        >
-        <span> | </span>
-        <span> <a href="#" id="farenheit-link">°F</a></span>
+        <span a href="#" id="celcius-link"></a> 
+           <strong>°C</strong></a> | 
+           </span>
+        
+        <span a href="#" id="farenheit-link"></a>°F</a></span>
       </div>
 
       <h3 id="weather-description"></h3>
