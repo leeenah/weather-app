@@ -108,8 +108,9 @@ function submitForm(event) {
 
 function convertToFarenheit(event) {
   event.preventDefault();
-  let temperature = document.querySelector("#current-temperature");
-  temperature.innerHTML = 50;
+  let temperature = (document.querySelector(
+    "#current-temperature"
+  ).innerHTML = 50);
 }
 
 function convertToCelcius(event) {
@@ -151,10 +152,5 @@ function getCurrentLocation(event) {
 
 let currentLocation = document.querySelector("#current-location");
 currentLocation.addEventListener("click", getCurrentLocation);
-
-function parseLocation(response) {
-  showTemperature(response);
-  showCity(response);
-}
 
 search("Vancouver");
