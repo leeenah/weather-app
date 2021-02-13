@@ -17,7 +17,7 @@ function formatDate(date) {
   }
   let currentMinutes = date.getMinutes(); //need to figure out what to do when time is <10 mins
   if (currentMinutes < 10) {
-    currentMinutes = `0 ${currentMinutes}`;
+    currentMinutes = `0${currentMinutes}`;
   }
   return `${currentDay} ${currentHour}:${currentMinutes}`;
 }
