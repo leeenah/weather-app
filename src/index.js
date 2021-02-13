@@ -76,6 +76,12 @@ function parseResponse(response) {
   showWeatherDescription(response);
 }
 
+function search(city) {
+  let apiKey = "fc744c97c485c14d19b2746947729882";
+  let units = "metric";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${apiKey}`;
+  axios.get(apiUrl).then(parseResponse);
+}
 //Feature #2
 //Add a search engine, when searching for a city (i.e. Paris),
 //display the city name on the page after the user submits the form.
@@ -130,7 +136,7 @@ celciusInput.addEventListener("click", convertToCelcius);
 //Add current location button. Use the geolocation API to get your GPS coordinates
 // and display the city and current temperature.
 
-function showPosition(position) {
+function showCurrentLocationWeather(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let unit = "metric";
@@ -140,12 +146,14 @@ function showPosition(position) {
   axios.get(apiGeoLocation).then(parseLocation);
 }
 
-navigator.geolocation.getCurrentPosition(showPosition);
+navigator.geolocation.getCurrentPosition(showCurrentLocationWeather);
 
 let currentLocation = document.querySelector("#current-location");
-currentLocation.addEventListener("submit", showPosition);
+currentLocation.addEventListener("submit", showCurrentLocationWeather);
 
 function parseLocation(response) {
   showTemperature(response);
   showCity(response);
 }
+
+search("Vancouver");
