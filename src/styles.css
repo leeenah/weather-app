@@ -26,14 +26,7 @@ a {
   text-decoration: none;
   color: black;
 }
-body {
-  border-style: solid;
-  border-radius: 8px;
-  border-width: 2px;
-  margin: 40px auto;
-  padding: 10px 10px 40px;
-  width: 50%;
-}
+
 footer {
   font-size: 9px;
   position: relative;
@@ -44,6 +37,15 @@ footer {
   text-align: center;
   margin-top: 20px;
 }
+.weatherApp {
+  border-style: solid;
+  border-radius: 8px;
+  border-width: 2px;
+  margin: 40px auto;
+  padding: 10px 10px 40px;
+  max-width: 550px;
+}
+
 .col-sm {
   text-align: center;
   font-size: 12px;
