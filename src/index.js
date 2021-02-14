@@ -15,7 +15,7 @@ function formatDate(date) {
   if (currentHour < 10) {
     currentHour = `0${currentHour}`;
   }
-  let currentMinutes = date.getMinutes(); //need to figure out what to do when time is <10 mins
+  let currentMinutes = date.getMinutes();
   if (currentMinutes < 10) {
     currentMinutes = `0${currentMinutes}`;
   }
@@ -38,7 +38,8 @@ function callApi() {
 //Display results of the searched city on the page
 
 function showTemperature(response) {
-  let temperature = Math.round(response.data.main.temp);
+  celciusTemperature = response.data.main.temp;
+  let temperature = Math.round(celciusTemperature);
   let temperatureDisplay = document.querySelector("#current-temperature");
   temperatureDisplay.innerHTML = temperature;
 }
@@ -108,15 +109,19 @@ function submitForm(event) {
 
 function convertToFarenheit(event) {
   event.preventDefault();
-  let temperature = (document.querySelector(
-    "#current-temperature"
-  ).innerHTML = 50);
+  let temperature = document.querySelector("#current-temperature");
+  celciusInput.classList.remove("active");
+  farenheitInput.classList.add("active");
+  let farenheitTemperature = (celciusTemperature * 9) / 5 + 32;
+  temperature.innerHTML = Math.round(farenheitTemperature);
 }
 
 function convertToCelcius(event) {
   event.preventDefault();
+  celciusInput.classList.add("active");
+  farenheitInput.classList.remove("active");
   let temperature = document.querySelector("#current-temperature");
-  temperature.innerHTML = 10;
+  temperature.innerHTML = Math.round(celciusTemperature);
 }
 //feature 1
 let today = new Date();
@@ -128,6 +133,8 @@ let cityWeather = document.querySelector("#search-form"); //added an id in input
 cityWeather.addEventListener("submit", submitForm);
 
 //bonus feature
+let celciusTemperature = null;
+
 let farenheitInput = document.querySelector("#farenheit-link");
 farenheitInput.addEventListener("click", convertToFarenheit);
 

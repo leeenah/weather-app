@@ -74,6 +74,10 @@ footer {
   margin-bottom: 0;
 }
 
+.active {
+  font-weight: bold;
+}
+
 #temperature-display {
   text-align: center;
 }
@@ -93,8 +97,14 @@ footer {
 #celcius-link {
   position: relative;
   top: -30px;
+  cursor: default;
 }
 #farenheit-link {
+  position: relative;
+  top: -30px;
+  cursor: default;
+}
+#divider {
   position: relative;
   top: -30px;
 }
