@@ -77,11 +77,18 @@ function parseResponse(response) {
   showWeatherDescription(response);
 }
 
+function displayForecast(response) {
+  console.log(response.data);
+}
+
 function search(city) {
   let apiKey = "fc744c97c485c14d19b2746947729882";
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(parseResponse);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`; //mode
+  axios.get(apiUrl).then(displayForecast);
 }
 //Feature #2
 //Add a search engine, when searching for a city (i.e. Paris),
