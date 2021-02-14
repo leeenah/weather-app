@@ -26,11 +26,15 @@ a {
   text-decoration: none;
   color: black;
 }
+img {
+  max-width: 80%;
+}
 
 footer {
   font-size: 9px;
   position: relative;
-  bottom: -60px;
+  bottom: -40px;
+  left: -20px;
 }
 
 #search-form {
@@ -42,13 +46,18 @@ footer {
   border-radius: 8px;
   border-width: 2px;
   margin: 40px auto;
-  padding: 10px 10px 40px;
+  padding: 10px 10px 20px;
   max-width: 550px;
 }
 
 .col-sm {
   text-align: center;
   font-size: 12px;
+}
+.col-2 {
+  text-align: center;
+  font-size: 12px;
+  padding: 0px;
 }
 .fa-sun {
   font-size: 30px;
@@ -111,4 +120,8 @@ footer {
 #divider {
   position: relative;
   top: -30px;
+}
+#forecast {
+  font-size: 12px;
+  padding: 5px 12px;
 }
