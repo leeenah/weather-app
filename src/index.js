@@ -22,6 +22,20 @@ function formatDate(date) {
   return `${currentDay} ${currentHour}:${currentMinutes}`;
 }
 
+function timeFormat(timestamp) {
+  let date = new Date(timestamp);
+  let currentHour = date.getHours();
+  if (currentHour < 10) {
+    currentHour = `0${currentHour}`;
+  }
+  let currentMinutes = date.getMinutes();
+  if (currentMinutes < 10) {
+    currentMinutes = `0${currentMinutes}`;
+  }
+
+  return `${currentHour}:${currentMinutes}`;
+}
+
 //Homework 5
 //1. city = london
 //2. city = new york
@@ -78,7 +92,25 @@ function parseResponse(response) {
 }
 
 function displayForecast(response) {
-  console.log(response.data);
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+    <div class="col-2"> <div>${timeFormat(forecast.dt * 1000)}</div>
+      
+      <img src = "http://openweathermap.org/img/wn/${
+        forecast.weather[0].icon
+      }@2x.png" />
+      
+      <div <strong>${Math.round(
+        forecast.main.temp_max
+      )}</strong>°C | <span> ${Math.round(forecast.main.temp_min)}°F </span>
+      </div>
+    </div>`;
+  }
 }
 
 function search(city) {
