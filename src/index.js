@@ -165,6 +165,23 @@ function convertToCelcius(event) {
   let temperature = document.querySelector("#current-temperature");
   temperature.innerHTML = Math.round(celciusTemperature);
 }
+
+//Add current location button. Use the geolocation API to get your GPS coordinates
+// and display the city and current temperature.
+
+function showCurrentLocationWeather(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiKey = "fc744c97c485c14d19b2746947729882";
+  let apiGeoLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiGeoLocation).then(parseResponse);
+}
+
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(showCurrentLocationWeather);
+}
+
 //feature 1
 let today = new Date();
 let currentTimeAndDay = document.querySelector("#current-dayAndTime");
@@ -182,22 +199,6 @@ farenheitInput.addEventListener("click", convertToFarenheit);
 
 let celciusInput = document.querySelector("#celcius-link");
 celciusInput.addEventListener("click", convertToCelcius);
-
-//Add current location button. Use the geolocation API to get your GPS coordinates
-// and display the city and current temperature.
-
-function showCurrentLocationWeather(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiKey = "fc744c97c485c14d19b2746947729882";
-  let apiGeoLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiGeoLocation).then(parseResponse);
-}
-
-function getCurrentLocation(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(showCurrentLocationWeather);
-}
 
 let currentLocation = document.querySelector("#current-location");
 currentLocation.addEventListener("click", getCurrentLocation);
