@@ -1,5 +1,5 @@
 //Feature #1
-//In your project, display the current date and time using JavaScript: Tuesday 16:00
+//display the current date and time (ie Tuesday 16:00 )
 function formatDate(date) {
   let dayIndex = [
     "Sunday",
@@ -36,7 +36,7 @@ function timeFormat(timestamp) {
   return `${currentHour}:${currentMinutes}`;
 }
 
-//Homework 5
+//user input:
 //1. city = london
 //2. city = new york
 // n = user input
@@ -49,23 +49,22 @@ function callApi() {
   // axios.get(apiUrl).then(showCity);
 }
 
-//Display results of the searched city on the page
-
+//Displays the temperature of the searched city on the page by replacing the HTML element
 function showTemperature(response) {
   celciusTemperature = response.data.main.temp;
   let temperature = Math.round(celciusTemperature);
   let temperatureDisplay = document.querySelector("#current-temperature");
   temperatureDisplay.innerHTML = temperature;
 }
-
+//Displays the city of the searched city on the page by replacing the HTML element
 function showCity(response2) {
-  let city = response2.data.name; //new york
+  let city = response2.data.name; //ie new york
   let h1 = document.querySelector("#city"); //#city = h1 element.
   h1.innerHTML = city;
-  //can also write the above as
+  //can also write the above as:
   //let h1 = document.querySelector("#city").innerHTML = response2.data.name;
 }
-
+//Additional weather information
 function showMoreWeatherInfo(response3) {
   let feelsLike = Math.round(response3.data.main.feels_like);
   let feelsLikeDisplay = (document.querySelector(
@@ -95,7 +94,7 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
-
+  //this loops from index 0 - 6.
   for (let index = 0; index < 6; index++) {
     forecast = response.data.list[index];
     forecastElement.innerHTML += `
@@ -114,7 +113,7 @@ function displayForecast(response) {
     </div>`;
   }
 }
-
+//this passes "Vancouver" and will display the forecast for Vancouver only
 function search(city) {
   let apiKey = "fc744c97c485c14d19b2746947729882";
   let units = "metric";
@@ -126,9 +125,8 @@ function search(city) {
 }
 
 //Feature #2
-//Add a search engine, when searching for a city (i.e. Paris),
+//Add a search engine
 //display the city name on the page after the user submits the form.
-
 function showCityWeather(event) {
   event.preventDefault();
   // get search text field
@@ -145,10 +143,7 @@ function submitForm(event) {
 }
 
 //Bonus Feature:
-//Display a fake temperature (i.e 17) in Celsius and add a link to convert it to Fahrenheit.
-//When clicking on it, it should convert the temperature to Fahrenheit.
-//When clicking on Celsius, it should convert it back to Celsius.
-
+//Displays degrees celcius and vice versa
 function convertToFarenheit(event) {
   event.preventDefault();
   let temperature = document.querySelector("#current-temperature");
@@ -166,9 +161,8 @@ function convertToCelcius(event) {
   temperature.innerHTML = Math.round(celciusTemperature);
 }
 
-//Add current location button. Use the geolocation API to get your GPS coordinates
-// and display the city and current temperature.
-
+//Add current location button.
+//Display the city and current temperature using the geolocation API
 function showCurrentLocationWeather(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
@@ -200,6 +194,7 @@ farenheitInput.addEventListener("click", convertToFarenheit);
 let celciusInput = document.querySelector("#celcius-link");
 celciusInput.addEventListener("click", convertToCelcius);
 
+//Current location button
 let currentLocation = document.querySelector("#current-location");
 currentLocation.addEventListener("click", getCurrentLocation);
 
