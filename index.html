@@ -14,7 +14,13 @@
       src="https://kit.fontawesome.com/94e2cfee0e.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="src/styles.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">    
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="src/styles.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Weather App</title>
   </head>
@@ -34,14 +40,14 @@
             autofocus="on"
             autocomplete="off"
           />
-          <input type="submit" value="Go" />
+          <input id = "goButton" type="submit" value="Go" />
           <button id="current-location" class="fas fa-location-arrow"></button>
         </div>
       </form>
 
       <h1 id="city"></h1>
       <p class="currentDay" id="current-dayAndTime">current time</p>
-      <p>currently</p>
+      <p id = "currently">currently</p>
 
       <div id="temperature-display">
         <span id="current-temperature"> </span>
@@ -67,7 +73,7 @@
         
       </div>
 
-    <script src="src/index.js"></script><footer><a href = "https://github.com/leeenah/weather-app" target="blank"> <i><strong>Open-source code</strong></i></a> by Lena Zhang</footer>
+    <script src="src/index.js"></script><footer><a href = "https://github.com/leeenah/weather-app" target="_blank"> <i><strong>Open-source code</strong></i></a> by Lena Zhang</footer>
 
     </div>
   </body>

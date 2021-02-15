@@ -105,9 +105,11 @@ function displayForecast(response) {
         forecast.weather[0].icon
       }@2x.png" />
       
-      <div <strong>${Math.round(
+      <div <span id = "high"> <strong>${Math.round(
         forecast.main.temp_max
-      )}</strong>°C | <span> ${Math.round(forecast.main.temp_min)}°F </span>
+      )}°C </strong> </span>| <span> ${Math.round(
+      forecast.main.temp_min
+    )}°C </span>
       </div>
     </div>`;
   }
@@ -119,9 +121,10 @@ function search(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${apiKey}`;
   axios.get(apiUrl).then(parseResponse);
 
-  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`; //mode
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayForecast);
 }
+
 //Feature #2
 //Add a search engine, when searching for a city (i.e. Paris),
 //display the city name on the page after the user submits the form.
