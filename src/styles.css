@@ -64,29 +64,6 @@ footer {
   font-size: 12px;
   padding: 0px;
 }
-.fa-sun {
-  font-size: 30px;
-  padding: 5px 12px;
-}
-.fa-cloud-rain {
-  font-size: 30px;
-  padding: 5px 12px;
-}
-.fa-cloud-sun {
-  font-size: 30px;
-  padding: 5px 12px;
-}
-.fa-location-arrow {
-  padding: 6px;
-}
-.col-md-auto {
-  padding: 0;
-  text-align: center;
-  background-color: crimson;
-}
-.col-md {
-  text-align: right;
-}
 
 #current-dayAndTime {
   margin-bottom: 0;
