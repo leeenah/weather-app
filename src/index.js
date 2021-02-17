@@ -113,6 +113,11 @@ function displayForecast(response) {
     </div>`;
   }
 }
+
+function go() {
+  let city = document.querySelector("#search-city").value;
+  search(city);
+}
 //this passes "Vancouver" and will display the forecast for Vancouver only
 function search(city) {
   let apiKey = "fc744c97c485c14d19b2746947729882";
@@ -184,6 +189,9 @@ currentTimeAndDay.innerHTML = formatDate(today);
 //feature 2
 let cityWeather = document.querySelector("#search-form"); //added an id in input element
 cityWeather.addEventListener("submit", submitForm);
+
+let cityForecast = document.querySelector("#search-form");
+cityForecast.addEventListener("submit", go);
 
 //bonus feature
 let celciusTemperature = null;
