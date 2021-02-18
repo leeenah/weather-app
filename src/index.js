@@ -36,19 +36,6 @@ function timeFormat(timestamp) {
   return `${currentHour}:${currentMinutes}`;
 }
 
-//user input:
-//1. city = london
-//2. city = new york
-// n = user input
-function callApi() {
-  let city = document.querySelector("#search-city").value;
-  let apiKey = "fc744c97c485c14d19b2746947729882";
-  let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${apiKey}`;
-  axios.get(apiUrl).then(parseResponse);
-  // axios.get(apiUrl).then(showCity);
-}
-
 //Displays the temperature of the searched city on the page by replacing the HTML element
 function showTemperature(response) {
   celciusTemperature = response.data.main.temp;
@@ -56,6 +43,7 @@ function showTemperature(response) {
   let temperatureDisplay = document.querySelector("#current-temperature");
   temperatureDisplay.innerHTML = temperature;
 }
+
 //Displays the city of the searched city on the page by replacing the HTML element
 function showCity(response2) {
   let city = response2.data.name; //ie new york
@@ -114,10 +102,6 @@ function displayForecast(response) {
   }
 }
 
-function go() {
-  let city = document.querySelector("#search-city").value;
-  search(city);
-}
 //this passes "Vancouver" and will display the forecast for Vancouver only
 function search(city) {
   let apiKey = "fc744c97c485c14d19b2746947729882";
@@ -129,22 +113,10 @@ function search(city) {
   axios.get(apiUrl).then(displayForecast);
 }
 
-//Feature #2
-//Add a search engine
-//display the city name on the page after the user submits the form.
-function showCityWeather(event) {
-  event.preventDefault();
-  // get search text field
-  let cityInput = document.querySelector("#search-city");
-  // gets H1 element
-  let city = document.querySelector("#city");
-  city.innerHTML = cityInput.value; //show value(input) from the cityInput
-  // callApi(cityInput.value);
-}
-
 function submitForm(event) {
-  showCityWeather(event);
-  callApi();
+  event.preventDefault();
+  let city = document.querySelector("#search-city").value;
+  search(city);
 }
 
 //Bonus Feature:
@@ -171,9 +143,19 @@ function convertToCelcius(event) {
 function showCurrentLocationWeather(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
+  let units = "metric";
   let apiKey = "fc744c97c485c14d19b2746947729882";
-  let apiGeoLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiGeoLocation).then(parseResponse);
+  let apiGeoLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+  axios.get(apiGeoLocation).then(parseCurrentLocation);
+}
+
+function parseCurrentLocation(response) {
+  parseResponse(response);
+  let city = response.data.name;
+  let units = "metric";
+  let apiKey = "fc744c97c485c14d19b2746947729882";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function getCurrentLocation(event) {
@@ -190,12 +172,6 @@ currentTimeAndDay.innerHTML = formatDate(today);
 let cityWeather = document.querySelector("#search-form"); //added an id in input element
 cityWeather.addEventListener("submit", submitForm);
 
-let cityForecast = document.querySelector("#search-form");
-cityForecast.addEventListener("submit", go);
-
-//bonus feature
-let celciusTemperature = null;
-
 let farenheitInput = document.querySelector("#farenheit-link");
 farenheitInput.addEventListener("click", convertToFarenheit);
 
@@ -206,4 +182,4 @@ celciusInput.addEventListener("click", convertToCelcius);
 let currentLocation = document.querySelector("#current-location");
 currentLocation.addEventListener("click", getCurrentLocation);
 
-search("Vancouver");
+search("San Francisco");
