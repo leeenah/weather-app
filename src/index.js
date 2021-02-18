@@ -160,7 +160,7 @@ function parseCurrentLocation(response) {
   axios.get(apiUrl).then(displayForecast);
 }
 
-function getCurrentLocation(event) {
+function showCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(showCurrentLocationWeather);
 }
@@ -182,6 +182,6 @@ celciusInput.addEventListener("click", convertToCelcius);
 
 //Current location button
 let currentLocation = document.querySelector("#current-location");
-currentLocation.addEventListener("click", getCurrentLocation);
+currentLocation.addEventListener("click", showCurrentLocation);
 
 searchCity("San Francisco");
