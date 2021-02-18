@@ -37,45 +37,44 @@ function timeFormat(timestamp) {
 }
 
 //Displays the temperature of the searched city on the page by replacing the HTML element
-function showTemperature(response) {
-  celciusTemperature = response.data.main.temp;
-  let temperature = Math.round(celciusTemperature);
+function showTemperature(temperature) {
+  let roundTemperature = Math.round(temperature);
   let temperatureDisplay = document.querySelector("#current-temperature");
-  temperatureDisplay.innerHTML = temperature;
+  temperatureDisplay.innerHTML = roundTemperature;
 }
 
 //Displays the city of the searched city on the page by replacing the HTML element
-function showCity(response2) {
-  let city = response2.data.name; //ie new york
+function showCity(city) {
   let h1 = document.querySelector("#city"); //#city = h1 element.
   h1.innerHTML = city;
   //can also write the above as:
   //let h1 = document.querySelector("#city").innerHTML = response2.data.name;
 }
 //Additional weather information
-function showMoreWeatherInfo(response3) {
-  let feelsLike = Math.round(response3.data.main.feels_like);
+function showMoreWeatherInfo(feelsLike, humidity) {
+  let roundFeelsLike = Math.round(feelsLike);
   let feelsLikeDisplay = (document.querySelector(
     "#feels-like"
-  ).innerHTML = feelsLike);
-  let humidity = response3.data.main.humidity;
+  ).innerHTML = roundFeelsLike);
   let humidityDisplay = Math.round(
     (document.querySelector("#humidity").innerHTML = humidity)
   );
 }
 
-function showWeatherDescription(response4) {
-  let description = response4.data.weather[0].description;
+function showWeatherDescription(description) {
   let weatherDescription = (document.querySelector(
     "#weather-description"
   ).innerHTML = description);
 }
 
 function parseResponse(response) {
-  showTemperature(response);
-  showCity(response);
-  showMoreWeatherInfo(response);
-  showWeatherDescription(response);
+  showTemperature(response.data.main.temp);
+  showCity(response.data.name);
+  showMoreWeatherInfo(
+    response.data.main.feels_like,
+    response.data.main.humidity
+  );
+  showWeatherDescription(response.data.weather[0].description);
 }
 
 function displayForecast(response) {
@@ -103,7 +102,7 @@ function displayForecast(response) {
 }
 
 //this passes "Vancouver" and will display the forecast for Vancouver only
-function search(city) {
+function searchCity(city) {
   let apiKey = "fc744c97c485c14d19b2746947729882";
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${apiKey}`;
@@ -116,26 +115,29 @@ function search(city) {
 function submitForm(event) {
   event.preventDefault();
   let city = document.querySelector("#search-city").value;
-  search(city);
+  searchCity(city);
 }
 
 //Bonus Feature:
 //Displays degrees celcius and vice versa
 function convertToFarenheit(event) {
   event.preventDefault();
-  let temperature = document.querySelector("#current-temperature");
+  let temperatureField = document.querySelector("#current-temperature");
+  let temperature = Number(temperatureField.innerHTML);
   celciusInput.classList.remove("active");
   farenheitInput.classList.add("active");
-  let farenheitTemperature = (celciusTemperature * 9) / 5 + 32;
-  temperature.innerHTML = Math.round(farenheitTemperature);
+  let farenheitTemperature = (temperature * 9) / 5 + 32;
+  temperatureField.innerHTML = Math.round(farenheitTemperature);
 }
 
 function convertToCelcius(event) {
   event.preventDefault();
   celciusInput.classList.add("active");
   farenheitInput.classList.remove("active");
-  let temperature = document.querySelector("#current-temperature");
-  temperature.innerHTML = Math.round(celciusTemperature);
+  let temperatureField = document.querySelector("#current-temperature");
+  let temperature = Number(temperatureField.innerHTML);
+  let celciusTemperature = ((temperature - 32) * 5) / 9;
+  temperatureField.innerHTML = Math.round(celciusTemperature);
 }
 
 //Add current location button.
@@ -182,4 +184,4 @@ celciusInput.addEventListener("click", convertToCelcius);
 let currentLocation = document.querySelector("#current-location");
 currentLocation.addEventListener("click", getCurrentLocation);
 
-search("San Francisco");
+searchCity("San Francisco");
