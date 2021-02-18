@@ -96,6 +96,7 @@ footer {
   border-color: black;
   position: relative;
   bottom: -2px;
+  padding: 6px;
 }
 
 #celcius-link {
